@@ -1,0 +1,2 @@
+# ClassicAsp
+Some usefull tricks
