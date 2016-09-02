@@ -1,8 +1,9 @@
 Const adVarChar = 200  'the SQL datatype is varchar
+Const Size = 200
 
 'Create a disconnected recordset
 Set rs = CreateObject("ADODB.RECORDSET")
-rs.Fields.append "Name", adVarChar, 25
+rs.Fields.append "Name", adVarChar, Size
 
 rs.CursorType = adOpenStatic
 rs.Open
