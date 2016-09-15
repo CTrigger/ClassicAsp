@@ -1,3 +1,4 @@
+<%
 Const adVarChar = 200  'the SQL datatype is varchar
 Const Size = 200
 
@@ -27,3 +28,4 @@ Do Until rs.EOF
     rs.MoveNext
 Loop 
 
+%>
