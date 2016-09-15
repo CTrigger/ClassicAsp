@@ -26,6 +26,9 @@ class CreateTextFile
 
 		next
 		Sai.Close()  
+		
+		Set Sai = nothing
+		Set fileSystem = nothing
 
 	end function
 
