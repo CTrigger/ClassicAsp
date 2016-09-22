@@ -33,25 +33,39 @@
 	
 
 		public function ArrayData(Fields, DBs)
-			
-			'for i = 0 to uBound (Fields)
-				Rs.AddNew Fields, DBs
-				Rs.UpDate
-			'next
+			Rs.AddNew Fields, DBs
+			Rs.UpDate
 		end function
 
 		
 		function ArrayList(Fields)
 			Rs.MoveFirst
 
+			response.Write "<table>"
+
+			Response.Write "<tr>"
+			for i = 0 to uBound (Fields)
+				Response.Write "<th>"
+				Response.Write Fields(i)
+				Response.Write "</th>"
+
+			next
+			Response.Write "</tr>"
+
 			do until Rs.EOF
+				response.Write "<tr>"	
+			
 				for i = 0 to uBound (Fields)
-					'Response.Write Fields(i)
+					Response.Write "<td>"
 					Response.Write Rs.Fields(Fields(i))
+					Response.Write "</td>"
 				next
-				response.Write "<br/>"
+				response.Write "</tr>"
 				Rs.MoveNext
+
 			loop
+			response.Write "</table>"
+
 		end function
 
 		
@@ -70,27 +84,27 @@
 
 %>
 <%
-	dim a,b
-	a = array("index","nome","etc")
-	nome = array("teste","Alfreto","Parana","Fogo","Etc")
+'	dim a,b
+'	a = array("index","nome","etc")
+'	nome = array("teste","Alfreto","Parana","Fogo","Etc")
 
-	set x = new DisconnectedADO
-	x.Init
-	x.ArrayFields a
-	for i =0 to 4
-		x.ArrayData a,array(i,nome(i),"teste")
-	next
-	x.ArrayList a
+'	set x = new DisconnectedADO
+'	x.Init
+'	x.ArrayFields a
+'	for i =0 to 4
+'		x.ArrayData a,array(i,nome(i),"teste")
+'	next
+'	x.ArrayList a
 
-	response.Write "<hr/>"
-	x.Sort("nome")
-	x.ArrayList a
+'	response.Write "<hr/>"
+'	x.Sort("nome")
+'	x.ArrayList a
 
-	response.Write "<hr/>"
-	x.Sort("index")
-	x.ArrayList a
+'	response.Write "<hr/>"
+'	x.Sort("index")
+'	x.ArrayList a
 
-	x.Finish
+'	x.Finish
 
 
 	
