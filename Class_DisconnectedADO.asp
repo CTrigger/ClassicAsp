@@ -4,12 +4,12 @@
 		Private Rs
 		Private adVarChar
 		Private Size
-
+		Private Style
 
 		public function Init ()
 			' Prepare Base
 			adVarChar = 200
-			Size = 200
+			Size = 1000
 			
 			' Create instance of recordset object and open the
 			' recordset object against a table.
@@ -33,12 +33,39 @@
 	
 
 		public function ArrayData(Fields, DBs)
-			Rs.AddNew Fields, DBs
-			Rs.UpDate
+			if uBound(Fields) = uBound(DBs) then
+				Rs.AddNew Fields, DBs
+				Rs.UpDate
+			end if
 		end function
 
 		
-		function ArrayList(Fields)
+		function ArrayListX(Fields)
+			style = "<style>" &_
+					"   table, th, tr, td {" &_
+					"       border: 1px solid black;" &_
+					"       text-transform: capitalize;" &_
+					"   }" &_
+					"   table { " &_
+					"       border-collapse: collapse;" &_
+					"       width: 100%;" &_
+					"   }" &_
+					"   th, td { " &_
+					"       text-align: left;" &_
+					"       padding: 8px;" &_
+					"   }" &_
+					"   tr:nth-child(even){background-color: #99ccff}" &_
+					"   th {" &_
+					"       background-color: #FFFF00;" &_
+					"       color: Black;" &_
+					"   }" &_
+					"   p {" &_
+					"       font-family: 'Lucida Console'" &_
+					"   }" &_
+					"</style>"
+
+			response.Write style
+
 			Rs.MoveFirst
 
 			response.Write "<table>"
@@ -57,7 +84,7 @@
 			
 				for i = 0 to uBound (Fields)
 					Response.Write "<td>"
-					Response.Write Rs.Fields(Fields(i))
+					Response.Write Rs.Fields(Fields(i)).value
 					Response.Write "</td>"
 				next
 				response.Write "</tr>"
@@ -68,6 +95,52 @@
 
 		end function
 
+		function ArrayListY(Fields)
+			style = "<style>" &_
+					"   table, th, tr, td {" &_
+					"       border: 1px solid black;" &_
+					"       text-transform: capitalize;" &_
+					"   }" &_
+					"   table { " &_
+					"       border-collapse: collapse;" &_
+					"       width: 100%;" &_
+					"   }" &_
+					"   th, td { " &_
+					"       text-align: left;" &_
+					"       padding: 8px;" &_
+					"   }" &_
+					"   tr:nth-child(even){background-color:  #99ccff}" &_
+					"   th {" &_
+					"       background-color: #FFFF00;" &_
+					"       color: Black;" &_
+					"   }" &_
+					"   p {" &_
+					"       font-family: 'Lucida Console'" &_
+					"   }" &_
+					"</style>"
+
+			response.Write style
+
+			Rs.MoveFirst
+
+			response.Write "<table>"
+			do until Rs.EOF
+				for i = 0 to uBound (Fields)
+					Response.Write "<tr>"
+					Response.Write "<th>"
+					Response.Write Fields(i)
+					Response.Write "</th>"
+
+					Response.Write "<td>"
+					Response.Write Rs.Fields(Fields(i)).value
+					Response.Write "</td>"
+					Response.Write "</tr>"
+				next
+				Rs.MoveNext
+			loop
+			response.Write "</table>"
+
+		end function
 		
 		function Sort(Field)
 			Rs.Sort = Field
