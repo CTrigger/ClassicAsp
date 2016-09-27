@@ -83,30 +83,3 @@
 	end class
 
 %>
-<%
-'	dim a,b
-'	a = array("index","nome","etc")
-'	nome = array("teste","Alfreto","Parana","Fogo","Etc")
-
-'	set x = new DisconnectedADO
-'	x.Init
-'	x.ArrayFields a
-'	for i =0 to 4
-'		x.ArrayData a,array(i,nome(i),"teste")
-'	next
-'	x.ArrayList a
-
-'	response.Write "<hr/>"
-'	x.Sort("nome")
-'	x.ArrayList a
-
-'	response.Write "<hr/>"
-'	x.Sort("index")
-'	x.ArrayList a
-
-'	x.Finish
-
-
-	
-	
-%>
